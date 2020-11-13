@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sorting Visualizer</title>
+  </head>
+  <body>
+    <div class="control" id="control">
+      <div class="algorithm_container">
+        <label>Pick an Algorithm:</label>
+        <select id="algorithm">
+          <option value="1">Merge Sort</option>
+          <option value="2">Quick Sort</option>
+          <option value="3">Index Sort</option>
+          <option value="4">Bubble Sort</option>
+        </select>
+      </div>
+      <div class="array_size">
+        <label>Set Array Size</label>
+        <input
+          class="slider"
+          type="range"
+          min="1"
+          max="100"
+          value="50"
+          id="size_slider"
+        />
+      </div>
+      <div class="sort_speed">
+        <label>Set Sorting Speed</label>
+        <input
+          class="slider"
+          type="range"
+          min="1"
+          max="100"
+          value="50"
+          id="speed_slider"
+        />
+      </div>
+      <div class="generate_rand_array" id="generate_rand_array">
+        <button type="submit" id="generate">Generate Array</button>
+      </div>
+      <div class="sort">
+        <button type="submit" id="sort">Sort</button>
+      </div>
+    </div>
+    <div class="array_container" id="array_container">
+      <div class="bar1"></div>
+      <div class="bar2"></div>
+      <div class="bar3"></div>
+      <div class="bar4"></div>
+    </div>
+  </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+* {
+  box-sizing: border-box;
+  font-size: 20px;
+}
+body {
+  display: flex;
+  background-color: #12232e;
+  color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: sans-serif;
+  margin: 0;
+}
+.control {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: -85vh;
+}
+.control div {
+  padding-left: 35px;
+}
+
+.algorithm_container {
+  margin: 20px 0;
+}
+.algorithm_container select,
+button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-left: 10px;
+  padding: 5px 15px 5px 15px;
+  font-size: 20px;
+}
+button:hover,
+select:hover,
+.slider:hover {
+  cursor: pointer;
+}
+
+.array_container {
+  background-color: #ffffff;
+  width: 160vh;
+  height: 80vh;
+  margin-bottom: -85vh;
+  border-radius: 5px;
+  display: flex;
+  align-content: center;
+  justify-self: center;
+}
+.array_container div {
+  width: 10px;
+  background-color: aqua;
+  margin-left: 4px;
+  position: relative;
+  bottom: 0px;
+  vertical-align: bottom;
+}
+/* height and top should add up to 100% */
+.bar1 {
+  height: 40%;
+  top: 60%;
+}
+.bar2 {
+  height: 90%;
+  top: 10%;
+}
+.bar3 {
+  height: 10%;
+  top: 90%;
+}
+.bar4 {
+  height: 20%;
+  top: 80%;
+}
