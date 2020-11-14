@@ -20,5 +20,5 @@ window.onload = function () {
       document.getElementById("array_container").appendChild(bar);
     }
   }
-  generateArray();
+
 };
