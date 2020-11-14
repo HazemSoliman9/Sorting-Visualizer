@@ -3,12 +3,11 @@ window.onload = function () {
   const algorithm_container = document.querySelector("algorithm_container");
   const array_size = document.querySelector("array_size");
   const sort_speed = document.querySelector("sort_speed");
-  const generate_rand_array_btn = document.getElementById("generate");
-  const array_container = document.getElementById("array_container");
+  var generate_rand_array_btn = document.getElementById("generate");
+  var array_container = document.getElementById("array_container");
 
-  generate_rand_array_btn.addEventListener("onclick", function (e) {
-    console.log("eh yalaaaa");
-    // generateArray();
+  generate_rand_array_btn.addEventListener("click", function (e) {
+    generateArray();
   });
   function generateArray() {
     array_container.innerHTML = "";
