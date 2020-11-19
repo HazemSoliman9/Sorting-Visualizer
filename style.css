@@ -62,19 +62,11 @@ select:hover,
   vertical-align: bottom;
 }
 /* height and top should add up to 100% */
-.bar1 {
-  height: 40%;
-  top: 60%;
+
+p {
+  color: black;
+  font-size: 10px;
 }
-.bar2 {
-  height: 90%;
-  top: 10%;
-}
-.bar3 {
-  height: 10%;
-  top: 90%;
-}
-.bar4 {
-  height: 20%;
-  top: 80%;
+.selected {
+  background-color: #ffe600;
 }
