@@ -13,7 +13,8 @@ window.onload = function () {
   sortbtn.addEventListener("click", function (e) {
     //  generateSortedArray();
     //generateSortedArrayTESTTIME();
-    bubbleSort(barArray);
+    // bubbleSort(barArray);
+    animatedBubble(barArray);
   });
   var barArray;
   function generateArray() {
@@ -52,6 +53,51 @@ window.onload = function () {
       }
       l--;
     }
+  }
+
+  function animatedBubble(myArray) {
+    drawArray(myArray);
+    l = myArray.length - 1;
+
+    var i = 0; //  set your counter to 1
+
+    function myFirstLoop() {
+      //  create a loop function
+      setTimeout(function () {
+        //  call a 3s setTimeout when the loop is called
+        {
+          var j = 0; //  set your counter to 1
+
+          function myLoop() {
+            //  create a loop function
+            setTimeout(function () {
+              //  call a 3s setTimeout when the loop is called
+              if (myArray[j] > myArray[j + 1]) {
+                // 8ayar loon (myArray[j], myArray[j+1])
+                temp = myArray[j];
+                myArray[j] = myArray[j + 1];
+                myArray[j + 1] = temp;
+                drawArray(myArray);
+              } //  your code here
+              j++; //  increment the counter
+              if (j < l) {
+                //  if the counter < 10, call the loop function
+                myLoop(); //  ..  again which will trigger another
+              } //  ..  setTimeout()
+            }, 50);
+          }
+
+          myLoop(); //  start the loop
+        } //  your code here
+        i++; //  increment the counter
+        if (i < myArray.length) {
+          //  if the counter < 10, call the loop function
+          myFirstLoop(); //  ..  again which will trigger another
+        } //  ..  setTimeout()
+      }, 50);
+    }
+
+    myFirstLoop(); //  start the loop
   }
 
   function testBubbleTany() {
