@@ -41,7 +41,39 @@ function recursiveTest(myArray, n){ // recursive function to switch every 2 neig
     }
 }
 
-var array = [2,5,4,3,6,9,5,8,98,43,787];
+function selectionSort (myArray){
+    console.log("here");
+    for (i = 0 ; i < myArray.length;i ++){
+        console.log("here in ");
+        min = 99999;
+        minIndex = i;
+        console.log(min);
+        for (j = i; j< myArray.length; j ++){
+            if (myArray [j] < min){;
+                min= myArray[j];
+                minIndex = j;
+            }
+        }
+        myArray [minIndex] = myArray [i];
+        myArray[i] = min;
+        // lawen we ersem dol
+    }
+}  
+function IndexSort(myArray){
+    for ( i = 0; i < myArray.length; i++) {
+        temp = myArray [i];
+        for (j = i-1 ;j >=0; j--) {
+            if (myArray [j] > temp) myArray [j+1] = myArray[j];
+            else {
+                myArray [j+1] = temp;
+                break;}
+            if (j == 0){
+                myArray [0] = temp;
+            }
+        }
+    } 
+}
+var array = [4,3,2,6,9,5,8,98,43,787];
 console.log(JSON.stringify(array));
-recursiveTest(array,11);
+IndexSort(array);
 console.log(JSON.stringify(array));
