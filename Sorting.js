@@ -1,14 +1,12 @@
 function bubbleSort (myArray){
     l = myArray.length - 1;
     for (i = 0 ; i < myArray.length ; i++){
-        console.log(JSON.stringify(array));
         for (j = 0; j< l; j++){
             if (myArray[j] > myArray[j +1]){
                 // 8ayar loon (myArray[j], myArray[j+1])
                 temp = myArray[j];
                 myArray[j] = myArray [j+1];
                 myArray [j+1] = temp;
-                for (k = 0; k < 10000000;k++);
                 // ersem tany 
             }
         }
@@ -75,7 +73,7 @@ function IndexSort(myArray){
         }
     } 
 }
-var array = [10,9,8,7,6,5,4,3,2,1];
-
-bubbleSort(array);
+var array = [4,3,2,6,9,5,8,98,43,787];
+console.log(JSON.stringify(array));
+IndexSort(array);
 console.log(JSON.stringify(array));
