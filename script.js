@@ -33,7 +33,7 @@ window.onload = function () {
 
   function animatedBubble(myArray) {
     drawArray(myArray);
-    l = myArray.length - 1;
+    l = myArray.length +1 ;
     var time = document.getElementById("speed_slider").value * 2;
     var i = 0;
 
@@ -54,17 +54,18 @@ window.onload = function () {
               if (j < l) {
                 myLoop();
               }
-            }, 500 - time);
+            }, (75));
           }
 
           myLoop();
+          l -= l-- - l;
         }
         i++; //  increment the counter
         if (i < myArray.length) {
           //  if condition not met call the loop function
           myFirstLoop(); //  ..  again which will trigger another
         }
-      }, 1000 - time);
+      }, (75)*(l+1));
     }
 
     myFirstLoop(); //  start the loop
