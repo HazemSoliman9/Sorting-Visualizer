@@ -33,16 +33,15 @@ window.onload = function () {
 
   function animatedBubble(myArray) {
     drawArray(myArray);
-    l = myArray.length +1 ;
+    
     var time = document.getElementById("speed_slider").value * 2;
-    var i = 0;
 
-    function myFirstLoop() {
+    function myFirstLoop(i,l) {
       setTimeout(function () {
-        {
-          var j = 0;
+        
+          
 
-          function myLoop() {
+          function myLoop(j,l) {
             setTimeout(function () {
               if (myArray[j] > myArray[j + 1]) {
                 temp = myArray[j];
@@ -52,23 +51,24 @@ window.onload = function () {
               }
               j++;
               if (j < l) {
-                myLoop();
+                myLoop(j,l);
               }
-            }, (75));
+            }, (150-time));
           }
 
-          myLoop();
-          l -= l-- - l;
-        }
+          myLoop(0,l);
+         
+        
+        l -= l-- - l;
         i++; //  increment the counter
         if (i < myArray.length) {
           //  if condition not met call the loop function
-          myFirstLoop(); //  ..  again which will trigger another
+          myFirstLoop(i,l); //  ..  again which will trigger another
         }
-      }, (75)*(l+1));
+      }, (220-time) * (l*2));
     }
 
-    myFirstLoop(); //  start the loop
+    myFirstLoop(0,myArray.length +1); //  start the loop
   }
   function animatedBubblereversed(myArray) {
     drawArray(myArray);
