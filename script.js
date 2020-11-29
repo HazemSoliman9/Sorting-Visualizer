@@ -14,8 +14,12 @@ window.onload = function () {
   sortbtn.addEventListener("click", function (e) {
     if (selectedSort === "bubble") {
       animatedBubble(barArray);
-    } else {
-      console.log("e5tar haga 3edla ya sahby");
+    } 
+    else if (selectedSort === "select") {
+      animatedSelectionSort(barArray);
+    }
+    else if (selectedSort === "index") {
+      animatedIndexSort(barArray);
     }
   });
   var barArray;
@@ -57,43 +61,61 @@ window.onload = function () {
       l -= l-- - l;
     }
   }
-  function animatedBubblereversed(myArray) {
+  async function animatedSelectionSort(myArray) {
     drawArray(myArray);
-    var l = 0;
-    var time = document.getElementById("speed_slider").value * 2;
-    var i = myArrray.length() - 1;
-
-    function myFirstLoop() {
-      setTimeout(function () {
-        {
-          var j = myArray.length - 1;
-
-          function myLoop() {
-            setTimeout(function () {
-              if (myArray[j] > myArray[j - 1]) {
-                temp = myArray[j];
-                myArray[j] = myArray[j - 1];
-                myArray[j - 1] = temp;
-                drawArray(myArray);
-              }
-              j -= j-- - j;
-              if (j > l) {
-                myLoop();
-              }
-            }, 50 - time);
-          }
-
-          myLoop();
+    
+    var time = document.getElementById("speed_slider").value;
+    for (i = 0; i < myArray.length; i++) {
+      min = 99999;
+      minIndex = i;
+      console.log(min);
+      for (j = i; j < myArray.length; j++) {
+        if (myArray[j] < min) {
+          min = myArray[j];
+          minIndex = j;
         }
-        i -= i-- - i; //  increment the counter
-        if (i >= 0) {
-          //  if condition not met call the loop function
-          myFirstLoop(); //  ..  again which will trigger another
-        }
-      }, 50 - time);
+      }
+     
+      let promise = new Promise((resolve, reject) => {
+        myArray[minIndex] = myArray[i];
+      myArray[i] = min;
+      setTimeout(() =>
+        resolve (myArray), 510 -time);
+    });
+  
+    let result = await promise; // wait until the promise resolves (*)
+   // han7tag n8ayar loon 3ashan tban 
+    drawArray(myArray); // "done!"
     }
-
-    myFirstLoop(); //  start the loop
+  }
+  async function animatedIndexSort(myArray) {
+    drawArray(myArray);
+    
+    var time = document.getElementById("speed_slider").value;
+    for (i = 0; i < myArray.length; i++) {
+      temp = myArray[i];
+      b = false;
+      for (j = i - 1; j >= 0; j--) {
+        
+        let promise = new Promise((resolve, reject) => {
+          if (myArray[j] > temp) myArray[j + 1] = myArray[j];
+          else {
+            myArray[j + 1] = temp;
+            b = true ;
+          }
+          if (j == 0) {
+            myArray[0] = temp;
+          }
+        setTimeout(() =>
+          resolve (myArray), 510-time);
+      });
+    
+      let result = await promise; // wait until the promise resolves (*)
+    
+      drawArray(myArray);
+      if (b) break;  // "done!"
+      }
+    }
   }
   function drawArray(ArrayRedraw) {
     array_container.innerHTML = "";

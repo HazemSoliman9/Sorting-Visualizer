@@ -61,10 +61,10 @@ function recursiveTest(myArray, n) {
   }
 }
 
-function selectionSort(myArray) {
+async function selectionSort(myArray) {
   console.log("here");
   for (i = 0; i < myArray.length; i++) {
-    console.log("here in ");
+    //console.log("here in ");
     min = 99999;
     minIndex = i;
     console.log(min);
@@ -74,28 +74,49 @@ function selectionSort(myArray) {
         minIndex = j;
       }
     }
-    myArray[minIndex] = myArray[i];
-    myArray[i] = min;
+   
     // lawen we ersem dol
+    let promise = new Promise((resolve, reject) => {
+      myArray[minIndex] = myArray[i];
+    myArray[i] = min;
+    setTimeout(() =>
+      resolve (myArray), 1000);
+  });
+
+  let result = await promise; // wait until the promise resolves (*)
+
+  console.log(JSON.stringify(result)); // "done!"
   }
 }
-function IndexSort(myArray) {
+async function IndexSort(myArray) {
   for (i = 0; i < myArray.length; i++) {
     temp = myArray[i];
+    b = false;
     for (j = i - 1; j >= 0; j--) {
-      if (myArray[j] > temp) myArray[j + 1] = myArray[j];
-      else {
-        myArray[j + 1] = temp;
-        break;
-      }
-      if (j == 0) {
-        myArray[0] = temp;
-      }
+      
+      let promise = new Promise((resolve, reject) => {
+        if (myArray[j] > temp) myArray[j + 1] = myArray[j];
+        else {
+          myArray[j + 1] = temp;
+          b = true ;
+        }
+        if (j == 0) {
+          myArray[0] = temp;
+        }
+      setTimeout(() =>
+        resolve (myArray), 1000);
+    });
+  
+    let result = await promise; // wait until the promise resolves (*)
+  
+    console.log(JSON.stringify(result));
+    if (b) break;  // "done!"
     }
   }
 }
+
 var array = [10,9,8,7,6,5,4,3,2,1];
 console.log(JSON.stringify(array));
-bubbleSort(array);
+IndexSort(array);
 //IndexSort(array);
 //console.log(JSON.stringify(array));
