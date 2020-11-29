@@ -31,43 +31,31 @@ window.onload = function () {
     drawArray(arr);
   }
 
-  function animatedBubble(myArray) {
+  async function animatedBubble(myArray) {
     drawArray(myArray);
-    l = myArray.length - 1;
+    
     var time = document.getElementById("speed_slider").value * 2;
-    var i = 0;
 
-    function myFirstLoop() {
-      setTimeout(function () {
-        {
-          var j = 0;
-
-          function myLoop() {
-            setTimeout(function () {
-              if (myArray[j] > myArray[j + 1]) {
-                temp = myArray[j];
-                myArray[j] = myArray[j + 1];
-                myArray[j + 1] = temp;
-                drawArray(myArray);
-              }
-              j++;
-              if (j < l) {
-                myLoop();
-              }
-            }, 500 - time);
-          }
-
-          myLoop();
+    l = myArray.length - 1;
+    for (i = 0; i < myArray.length; i++) {
+      for (j = 0; j < l; j++) {
+        if (myArray[j] > myArray[j + 1]) {
+          let promise = new Promise((resolve, reject) => {
+            temp = myArray[j];
+            myArray[j] = myArray[j + 1];
+            myArray[j + 1] = temp;
+          setTimeout(() =>
+            resolve (myArray), 510 -time);
+        });
+      
+        let result = await promise; // wait until the promise resolves (*)
+      
+        //console.log(JSON.stringify(result)); // "done!"
+        drawArray(myArray);
         }
-        i++; //  increment the counter
-        if (i < myArray.length) {
-          //  if condition not met call the loop function
-          myFirstLoop(); //  ..  again which will trigger another
-        }
-      }, 1000 - time);
+      }
+      l -= l-- - l;
     }
-
-    myFirstLoop(); //  start the loop
   }
   function animatedBubblereversed(myArray) {
     drawArray(myArray);
