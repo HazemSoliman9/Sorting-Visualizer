@@ -1,17 +1,37 @@
-function bubbleSort(myArray) {
+async function bubbleSort(myArray) {
   l = myArray.length - 1;
   for (i = 0; i < myArray.length; i++) {
     for (j = 0; j < l; j++) {
       if (myArray[j] > myArray[j + 1]) {
-        // 8ayar loon (myArray[j], myArray[j+1])
-        temp = myArray[j];
-        myArray[j] = myArray[j + 1];
-        myArray[j + 1] = temp;
-        // ersem tany
+        let promise = new Promise((resolve, reject) => {
+          temp = myArray[j];
+          myArray[j] = myArray[j + 1];
+          myArray[j + 1] = temp;
+        setTimeout(() =>
+          resolve (myArray), 1000);
+      });
+    
+      let result = await promise; // wait until the promise resolves (*)
+    
+      console.log(JSON.stringify(result)); // "done!"
       }
     }
     l -= l-- - l;
   }
+}
+async function f(myArray,j) {
+
+  let promise = new Promise((resolve, reject) => {
+      temp = myArray[j];
+      myArray[j] = myArray[j + 1];
+      myArray[j + 1] = temp;
+    setTimeout(() =>
+      resolve (myArray), 1000);
+  });
+
+  let result = await promise; // wait until the promise resolves (*)
+
+  console.log(JSON.stringify(result)); // "done!"
 }
 //beeb
 // batal le3b
@@ -74,7 +94,8 @@ function IndexSort(myArray) {
     }
   }
 }
-var array = [4, 3, 2, 6, 9, 5, 8, 98, 43, 787];
+var array = [10,9,8,7,6,5,4,3,2,1];
 console.log(JSON.stringify(array));
-IndexSort(array);
-console.log(JSON.stringify(array));
+bubbleSort(array);
+//IndexSort(array);
+//console.log(JSON.stringify(array));
