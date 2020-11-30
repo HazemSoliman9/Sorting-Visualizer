@@ -7,26 +7,23 @@ async function bubbleSort(myArray) {
           temp = myArray[j];
           myArray[j] = myArray[j + 1];
           myArray[j + 1] = temp;
-        setTimeout(() =>
-          resolve (myArray), 1000);
-      });
-    
-      let result = await promise; // wait until the promise resolves (*)
-    
-      console.log(JSON.stringify(result)); // "done!"
+          setTimeout(() => resolve(myArray), 1000);
+        });
+
+        let result = await promise; // wait until the promise resolves (*)
+
+        console.log(JSON.stringify(result)); // "done!"
       }
     }
     l -= l-- - l;
   }
 }
-async function f(myArray,j) {
-
+async function f(myArray, j) {
   let promise = new Promise((resolve, reject) => {
-      temp = myArray[j];
-      myArray[j] = myArray[j + 1];
-      myArray[j + 1] = temp;
-    setTimeout(() =>
-      resolve (myArray), 1000);
+    temp = myArray[j];
+    myArray[j] = myArray[j + 1];
+    myArray[j + 1] = temp;
+    setTimeout(() => resolve(myArray), 1000);
   });
 
   let result = await promise; // wait until the promise resolves (*)
@@ -74,18 +71,17 @@ async function selectionSort(myArray) {
         minIndex = j;
       }
     }
-   
+
     // lawen we ersem dol
     let promise = new Promise((resolve, reject) => {
       myArray[minIndex] = myArray[i];
-    myArray[i] = min;
-    setTimeout(() =>
-      resolve (myArray), 1000);
-  });
+      myArray[i] = min;
+      setTimeout(() => resolve(myArray), 1000);
+    });
 
-  let result = await promise; // wait until the promise resolves (*)
+    let result = await promise; // wait until the promise resolves (*)
 
-  console.log(JSON.stringify(result)); // "done!"
+    console.log(JSON.stringify(result)); // "done!"
   }
 }
 async function IndexSort(myArray) {
@@ -93,30 +89,22 @@ async function IndexSort(myArray) {
     temp = myArray[i];
     b = false;
     for (j = i - 1; j >= 0; j--) {
-      
       let promise = new Promise((resolve, reject) => {
         if (myArray[j] > temp) myArray[j + 1] = myArray[j];
         else {
           myArray[j + 1] = temp;
-          b = true ;
+          b = true;
         }
         if (j == 0) {
           myArray[0] = temp;
         }
-      setTimeout(() =>
-        resolve (myArray), 1000);
-    });
-  
-    let result = await promise; // wait until the promise resolves (*)
-  
-    console.log(JSON.stringify(result));
-    if (b) break;  // "done!"
+        setTimeout(() => resolve(myArray), 1000);
+      });
+
+      let result = await promise; // wait until the promise resolves (*)
+
+      console.log(JSON.stringify(result));
+      if (b) break; // "done!"
     }
   }
 }
-
-var array = [10,9,8,7,6,5,4,3,2,1];
-console.log(JSON.stringify(array));
-IndexSort(array);
-//IndexSort(array);
-//console.log(JSON.stringify(array));

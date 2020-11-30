@@ -14,11 +14,9 @@ window.onload = function () {
   sortbtn.addEventListener("click", function (e) {
     if (selectedSort === "bubble") {
       animatedBubble(barArray);
-    } 
-    else if (selectedSort === "select") {
+    } else if (selectedSort === "select") {
       animatedSelectionSort(barArray);
-    }
-    else if (selectedSort === "index") {
+    } else if (selectedSort === "index") {
       animatedIndexSort(barArray);
     }
   });
@@ -37,7 +35,7 @@ window.onload = function () {
 
   async function animatedBubble(myArray) {
     drawArray(myArray);
-    
+
     var time = document.getElementById("speed_slider").value * 2;
 
     l = myArray.length - 1;
@@ -48,14 +46,13 @@ window.onload = function () {
             temp = myArray[j];
             myArray[j] = myArray[j + 1];
             myArray[j + 1] = temp;
-          setTimeout(() =>
-            resolve (myArray), 510 -time);
-        });
-      
-        let result = await promise; // wait until the promise resolves (*)
-      
-        //console.log(JSON.stringify(result)); // "done!"
-        drawArray(myArray);
+            setTimeout(() => resolve(myArray), 510 - time);
+          });
+
+          let result = await promise; // wait until the promise resolves (*)
+
+          //console.log(JSON.stringify(result)); // "done!"
+          drawArray(myArray);
         }
       }
       l -= l-- - l;
@@ -63,7 +60,7 @@ window.onload = function () {
   }
   async function animatedSelectionSort(myArray) {
     drawArray(myArray);
-    
+
     var time = document.getElementById("speed_slider").value;
     for (i = 0; i < myArray.length; i++) {
       min = 99999;
@@ -75,45 +72,42 @@ window.onload = function () {
           minIndex = j;
         }
       }
-     
+
       let promise = new Promise((resolve, reject) => {
         myArray[minIndex] = myArray[i];
-      myArray[i] = min;
-      setTimeout(() =>
-        resolve (myArray), 510 -time);
-    });
-  
-    let result = await promise; // wait until the promise resolves (*)
-   // han7tag n8ayar loon 3ashan tban 
-    drawArray(myArray); // "done!"
+        myArray[i] = min;
+        setTimeout(() => resolve(myArray), 510 - time);
+      });
+
+      let result = await promise; // wait until the promise resolves (*)
+      // han7tag n8ayar loon 3ashan tban
+      drawArray(myArray); // "done!"
     }
   }
   async function animatedIndexSort(myArray) {
     drawArray(myArray);
-    
+
     var time = document.getElementById("speed_slider").value;
     for (i = 0; i < myArray.length; i++) {
       temp = myArray[i];
       b = false;
       for (j = i - 1; j >= 0; j--) {
-        
         let promise = new Promise((resolve, reject) => {
           if (myArray[j] > temp) myArray[j + 1] = myArray[j];
           else {
             myArray[j + 1] = temp;
-            b = true ;
+            b = true;
           }
           if (j == 0) {
             myArray[0] = temp;
           }
-        setTimeout(() =>
-          resolve (myArray), 510-time);
-      });
-    
-      let result = await promise; // wait until the promise resolves (*)
-    
-      drawArray(myArray);
-      if (b) break;  // "done!"
+          setTimeout(() => resolve(myArray), 510 - time);
+        });
+
+        let result = await promise; // wait until the promise resolves (*)
+
+        drawArray(myArray);
+        if (b) break; // "done!"
       }
     }
   }
@@ -128,6 +122,11 @@ window.onload = function () {
       bar.style.height = height + "%";
       bar.style.top = 100 - height + "%";
       bar.id = "bar";
+      if (i === 0) {
+        var x = array_container.clientWidth;
+        var y = (4 + 10) * ArrayRedraw.length;
+        bar.style.marginLeft = (x - y) / 2 + "px";
+      }
       bar.classList.add("bar");
       document.getElementById("array_container").appendChild(bar);
     }
