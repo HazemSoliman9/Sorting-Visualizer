@@ -4,7 +4,7 @@
 }
 body {
   display: flex;
-  background-color: #1f2633;
+  background-color: #222222;
   color: #ffffff;
   flex-direction: column;
   align-items: center;
@@ -55,7 +55,7 @@ select:hover,
 }
 .array_container div {
   width: 10px;
-  background-color: #35ffd8;
+  background-color: #30cfaf;
   margin-left: 4px;
   position: relative;
   bottom: 0px;
@@ -69,5 +69,5 @@ p {
   font-size: 10px;
 }
 .sorted {
-  background-color: #691eff;
+  background-color: #2d2341;
 }
