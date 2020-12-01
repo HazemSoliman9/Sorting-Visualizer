@@ -52,9 +52,10 @@ window.onload = function () {
           let result = await promise; // wait until the promise resolves (*)
 
           //console.log(JSON.stringify(result)); // "done!"
-          drawArray(myArray);
         }
+        drawArrayWithInvar(myArray, i);
       }
+      drawArrayWithInvar(myArray, i);
       l -= l-- - l;
     }
   }
@@ -129,6 +130,29 @@ window.onload = function () {
       }
       bar.classList.add("bar");
       document.getElementById("array_container").appendChild(bar);
+    }
+  }
+  function drawArrayWithInvar(ArrayRedraw, ind) {
+    array_container.innerHTML = "";
+    for (let i = 0; i < ArrayRedraw.length; i++) {
+      var height = ArrayRedraw[i];
+      var bar = document.createElement("div");
+      var barValue = document.createElement("p");
+      barValue.innerHTML = height;
+      bar.appendChild(barValue);
+      bar.style.height = height + "%";
+      bar.style.top = 100 - height + "%";
+      bar.id = "bar";
+      if (i === 0) {
+        var x = array_container.clientWidth;
+        var y = (4 + 10) * ArrayRedraw.length;
+        bar.style.marginLeft = (x - y) / 2 + "px";
+      }
+      bar.classList.add("bar");
+      document.getElementById("array_container").appendChild(bar);
+      if (ArrayRedraw.length - i - 1 < ind || ind === ArrayRedraw.length - 1) {
+        bar.style.backgroundColor = "#691eff";
+      }
     }
   }
 };
