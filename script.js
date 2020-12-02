@@ -151,7 +151,7 @@ window.onload = function () {
       bar.classList.add("bar");
       document.getElementById("array_container").appendChild(bar);
       if (ArrayRedraw.length - i - 1 < ind || ind === ArrayRedraw.length - 1) {
-        bar.style.backgroundColor = "#691eff";
+        bar.style.backgroundColor = "#691EFF";
       }
     }
   }
