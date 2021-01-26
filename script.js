@@ -12,12 +12,13 @@ window.onload = function () {
     generateArray();
   });
   sortbtn.addEventListener("click", function (e) {
+    let first = new ArrayInstance (barArray);
     if (selectedSort === "bubble") {
-      animatedBubble(barArray);
+      bubbleSortNew (first);
     } else if (selectedSort === "select") {
-      animatedSelectionSort(barArray);
+      selectionSort (first);   
     } else if (selectedSort === "index") {
-      animatedIndexSort(barArray);
+      InsertionSort(first);
     }
   });
   var barArray;
@@ -112,6 +113,109 @@ window.onload = function () {
       }
     }
   }
+  function bubbleSortNew (first) {
+    l = first.numList.length - 1;
+    let current = first;
+    for (i = 0; i < first.numList.length; i++) {
+      for (j = 0; j < l; j++) {
+        let myArray = new ArrayInstance (current.numList.slice());
+        current.next = myArray;
+        myArray.previous = current;
+        if (myArray.numList[j] > myArray.numList[j + 1]) {
+          
+            let temp = myArray.numList[j];
+            myArray.numList[j] = myArray.numList[j + 1];
+            myArray.numList[j + 1] = temp;
+        }
+        current = myArray;
+      }
+      l -= l-- - l;
+    }
+    display(first);
+  }
+  function selectionSort(first) {
+    let current = first;
+   for (i = 0; i < first.numList.length; i++) {
+     min = 99999;
+     minIndex = i;
+     
+     for (j = i; j < first.numList.length; j++) {
+       if (current.numList[j] < min) {
+         min = current.numList[j];
+         minIndex = j;
+       }
+     }
+       let neu = new ArrayInstance (current.numList.slice());
+       current.next = neu;
+       neu.previous = current;
+       neu.numList[minIndex] = neu.numList[i];
+       neu.numList[i] = min;
+       current = neu;
+ 
+  // wait until the promise resolves (*)
+ 
+      // "done!"
+   }
+   display(first);
+ }
+ function InsertionSort(first) {
+  let current = first;
+  for (i = 1; i < current.numList.length; i++) {
+    temp = current.numList[i];
+    b = false;
+    for (j = i - 1; j >= 0; j--) {
+      let neu = new ArrayInstance (current.numList.slice());
+      current.next = neu;
+      neu.previous = current;
+      current = neu;
+        if (current.numList[j] > temp) current.numList[j + 1] = current.numList[j];
+        else {
+          current.numList[j + 1] = temp;
+          b = true;
+        }
+        if (j == 0) current.numList[0] = temp;
+
+        if (b) break; 
+    }
+  }
+  display(first);
+}
+
+  async function display (list){
+    while (list!= null  ){
+      let promise = new Promise((resolve, reject) => {
+        list.drawBta3();
+        list = list.next;
+      
+        setTimeout(() => resolve(), 1000 - document.getElementById("speed_slider").value * 2);
+      });
+      await promise ; 
+    }};
+  function ArrayInstance (numList){
+    this.numList = numList;
+    this.next = null ; 
+    this.previous = null; 
+    this.drawBta3 = function drawArray() {
+      array_container.innerHTML = "";
+      for (let i = 0; i < numList.length; i++) {
+        var height = numList[i];
+        var bar = document.createElement("div");
+        var barValue = document.createElement("p");
+        barValue.innerHTML = height;
+        bar.appendChild(barValue);
+        bar.style.height = height + "%";
+        bar.style.top = 100 - height + "%";
+        bar.id = "bar";
+        if (i === 0) {
+          var x = array_container.clientWidth;
+          var y = (4 + 10) * numList.length;
+          bar.style.marginLeft = (x - y) / 2 + "px";
+        }
+        bar.classList.add("bar");
+        document.getElementById("array_container").appendChild(bar);
+      }
+    };
+  };
   function drawArray(ArrayRedraw) {
     array_container.innerHTML = "";
     for (let i = 0; i < ArrayRedraw.length; i++) {
